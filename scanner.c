@@ -1,12 +1,13 @@
 #include "scanner.h"
 
-int estado_actual = 0;
-char c;
+char caracter;
+int estadoActual;
+
 static int tabla[8][6] = {
-    { 1 , 2 , 4 , 3 , 5 , 0},
+    { 1 , 2 , 3 , 4 , 5 , 0},
     { 1 , 6 , 6 , 6 , 6 , 6},
     { 2 , 2 , 7 , 7 , 7 , 7},
-    { 8 , 8 , 8 , 3 , 8 , 8},
+    { 8 , 8 , 3 , 8 , 8 , 8},
     {99 ,99 ,99 ,99 ,99 ,99},
     {99 ,99 ,99 ,99 ,99 ,99},
     {99 ,99 ,99 ,99 ,99 ,99},
@@ -17,55 +18,59 @@ static int tabla[8][6] = {
 int cambiarEstado(char c)
 {
   if(isdigit(c))
-    return tabla[estado_actual][DIGITO];
+    return tabla[estadoActual][DIGITO];
 
   else if(isalpha(c))
-    return tabla[estado_actual][LETRA];
+    return tabla[estadoActual][LETRA];
 
  //else if(isNumeral(c))
- //   return tabla[estado_actual][UN_NUMERAL];
+ //   return tabla[estadoActual][UN_NUMERAL];
 
   else if (c == EOF )
-    return tabla[estado_actual][FDC];
+    return tabla[estadoActual][FNC];
 
   else if(isspace(c))
-    return tabla[estado_actual][ESPACIO];
+    return tabla[estadoActual][ESPACIO];
 
-    return tabla[estado_actual][OTRO];
+    return tabla[estadoActual][OTRO];
 }
 // -----------------------------------------------------------------------------------------
-TOKEN aceptarToken(int estado_actual)
+int aceptarToken()
 {
-    switch(estado_actual)
+  estadoActual = 0;
+
+  switch(estadoActual)
 	{
     case 4:
-        ungetc(c,stdin);
+        ungetc(caracter,stdin);
 		    return NUMERAL;
+    
+    case 5:
+        return FDT;
 
     case 6:
-        ungetc(c,stdin);
+        ungetc(caracter,stdin);
 		    return CONSTANTE_ENTERA;
 
 		case 7:
-        ungetc(c,stdin);
+        ungetc(caracter,stdin);
 		    return IDENTIFICADOR;
 
 		case 8:
-        ungetc(c,stdin);
+        ungetc(caracter,stdin);
 		    return ERROR;
 
 	}
-	return FDT;
 }
 // -----------------------------------------------------------------------------------------
-TOKEN scanner()
+int scanner()
 {
 	do
 	{
- 		c  = getchar();
-    estado_actual = cambiarEstado(c);
+    caracter  = getchar();
+    estadoActual = cambiarEstado(caracter);
     
-	}while(estado_actual < 4);
-	aceptarToken(estado_actual);
-	estado_actual = 0;
+	}while(estadoActual < 4);
+
+	return aceptarToken();
 }

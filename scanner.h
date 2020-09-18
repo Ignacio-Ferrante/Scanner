@@ -6,11 +6,12 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-typedef enum{DIGITO, LETRA, UN_NUMERAL, OTRO, FNC, ESPACIO} CARACTER;
-typedef enum{IDENTIFICADOR,CONSTANTE_ENTERA, NUMERAL, ERROR, FDT} TOKEN;
+enum{DIGITO, LETRA, OTRO, UN_NUMERAL, FNC, ESPACIO};
+
+enum{CONSTANTE_ENTERA, IDENTIFICADOR, NUMERAL, ERROR, FDT};
 
 // ---------------------------------------
 
-TOKEN scanner();
+int scanner();
 
 #endif // SCANNER_H_INCLUDED

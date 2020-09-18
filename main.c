@@ -13,7 +13,7 @@ int cantConstantes = 0;
 int cantErrores = 0;
 int cantNumerales = 0;
 
-TOKEN token;
+int token;
 
 int main()
 {
