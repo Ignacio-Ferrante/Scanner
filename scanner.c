@@ -32,6 +32,7 @@ int cambiarEstado(char c)
   else if(isspace(c))
     return tabla[estadoActual][ESPACIO];
 
+  else
     return tabla[estadoActual][OTRO];
 }
 // -----------------------------------------------------------------------------------------
