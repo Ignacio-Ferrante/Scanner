@@ -11,7 +11,7 @@ typedef enum{ENTERO, IDENTIFICADOR, ERROR_LEXICO, FDT, NUMERAL} TOKEN;
 TOKEN scanner();
 bool frenar(int e);
 bool esEstadoFinal(int estado);
-int cambiarEstado(char c);
+int cambiarEstado(char caracter);
 
 #endif
 
