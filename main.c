@@ -3,7 +3,11 @@
       TP1 - 2020
       "Un escaner elemental"
 
-                                                                                    */
+      INTEGRANTES: 
+      Alejandro Buergo / 168.569-7
+      Ignacio Ferrante / 171.524-0
+      Patricio Galli   / 172.467-8
+                                                                                          */
 //////////////////////////////////////////////////////////////////////////////////////
 
 #include "scanner.h"

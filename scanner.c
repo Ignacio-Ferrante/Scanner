@@ -42,9 +42,6 @@ int aceptarToken(char caracter, int estadoActual)
 	{
     case 4:
 		    return NUMERAL;
-    
-    case 5:
-        return FDT;
 
     case 6:
         ungetc(caracter,stdin);
@@ -58,6 +55,7 @@ int aceptarToken(char caracter, int estadoActual)
         ungetc(caracter,stdin);
 		    return ERROR;
 	}
+  return FDT;
 }
 // -----------------------------------------------------------------------------------------
 int scanner()
