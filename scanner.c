@@ -54,6 +54,9 @@ int aceptarToken(char caracter, int estadoActual)
 		case 8:
         ungetc(caracter,stdin);
 		    return ERROR;
+
+    default:
+        break;
 	}
   return FDT;
 }
@@ -74,14 +77,3 @@ int scanner()
   token = aceptarToken(caracter, estadoActual);
 	return token;
 }
-
-/*
------ERRORES-----
-
-Si recibo un # debo ir directo a un estado final aceptor sin pasar por estados intermedios.
-En el código está emparchado porque hacen ungetc cuando es numeral, pero resulta que numeral no lleva centinela por lo tanto no debe tener ungetc
-En cambiarEstado porque usaron el número mágico 35 en lugar de '#' que es muchísimo más claro?
-La última sentencia de scanner estadoActual = 0; no tiene sentido y además scanner devuelve token y no hay ningún return.
-No tiene ningún sentido que estadoActual sea una variable global, debe ser local de scanner
-
-*/
