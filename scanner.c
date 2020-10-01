@@ -11,6 +11,9 @@ static int tabla[8][6] = {
     {99 ,99 ,99 ,99 ,99 ,99},
     };
 
+const bool estado[10] = {false,false,false,false,true,true,true,true,true,false};
+int estadoActual = 0;
+
 // ------------------------------------------------------------------------------------------
 int cambiarEstado(char c, int estadoActual)
 {
@@ -30,7 +33,13 @@ int cambiarEstado(char c, int estadoActual)
     return tabla[estadoActual][ESPACIO];
 
   else
-    return tabla[estadoActual][OTRO];
+    return tabla[estadoActual][3];
+}
+
+// ------------------------------------------------------------------------------------------
+bool frenar(int e)
+{
+	return estado[e];
 }
 // -----------------------------------------------------------------------------------------
 int aceptarToken(char caracter, int estadoActual)
@@ -38,28 +47,22 @@ int aceptarToken(char caracter, int estadoActual)
     switch(estadoActual)
 	{
     case 4:
-        ungetc(caracter,stdin);
-		    return NUMERAL;
-    
-    case 5:
-        return FDT;
-
+		ungetc(caracter,stdin);
+		return NUMERAL;
     case 6:
-        ungetc(caracter,stdin);
-		    return CONSTANTE_ENTERA;
-
+    ungetc(caracter,stdin);
+		return ENTERO;
 		case 7:
-        ungetc(caracter,stdin);
-		    return IDENTIFICADOR;
-
+    ungetc(caracter,stdin);
+		return IDENTIFICADOR;
 		case 8:
         ungetc(caracter,stdin);
-		    return ERROR;
-
+		return ERROR_LEXICO;
 	}
+	return FDT;
 }
 // -----------------------------------------------------------------------------------------
-int scanner()
+TOKEN scanner()
 {
   int token;
   int estadoActual;

@@ -1,12 +1,19 @@
-//////////////////////////////////////////////////////////////////////////////////////
 /*
-      TP1 - 2020
-      "Un escaner elemental"
+TRABAJO PRACTICO N1 2020
+"Un escaner elemental"
 
-                                                                                    */
-//////////////////////////////////////////////////////////////////////////////////////
+INTEGRANTES: 
+Alejandro Buergo / 168.569-7
+Ignacio Ferrante / 171.524-0
+Patricio Galli   / 172.467-8
+*/
 
 #include "scanner.h"
+int cantidadIdentificadores = 0;
+int cantidadConstantesEnt = 0;
+int cantidadNumerales = 0;
+int cantidadErrores = 0;
+TOKEN c;
 
 int main()
 {

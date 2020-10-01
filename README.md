@@ -1,6 +1,5 @@
 # Scanner
-Realización del trabajo practico numero 1 de sintaxis y semántica del los lenguajes
 
-Genere el repositorio y pushie los cambios que se me ocurrieron hacerle al archivo encontrado.
+TP 1 terminado. Si quieren, pueden cambiar un poco los nombres o el orden sin alterar la compilación del código. De lo contrario, yo creo que está listo.
 
-Falta terminar de editar y agregar las correciones hechas a la tabla.
+Actualizado: Aproveché que estaba con el visual studio code y cambié algunos nombres de funciones. No se me ocurre alguna otra cosa para cambiar.

@@ -6,10 +6,13 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-enum{DIGITO, LETRA, OTRO, UN_NUMERAL, FNC, ESPACIO};
+typedef enum{ENTERO, IDENTIFICADOR, ERROR_LEXICO, FDT, NUMERAL} TOKEN;
 
-enum{CONSTANTE_ENTERA, IDENTIFICADOR, NUMERAL, ERROR, FDT};
+TOKEN scanner();
+bool frenar(int e);
+bool esEstadoFinal(int estado);
+int cambiarEstado(char caracter);
 
-int scanner();
+#endif
 
-#endif // SCANNER_H_INCLUDED
+
