@@ -11,9 +11,6 @@ static int tabla[8][6] = {
     {99 ,99 ,99 ,99 ,99 ,99},
     };
 
-const bool estado[10] = {false,false,false,false,true,true,true,true,true,false};
-int estadoActual = 0;
-
 // ------------------------------------------------------------------------------------------
 int cambiarEstado(char c, int estadoActual)
 {
@@ -23,7 +20,7 @@ int cambiarEstado(char c, int estadoActual)
   else if(isalpha(c))
     return tabla[estadoActual][LETRA];
 
- else if(c == 35)
+ else if(c == '#')
     return tabla[estadoActual][UN_NUMERAL];
 
   else if (c == EOF )
@@ -33,36 +30,35 @@ int cambiarEstado(char c, int estadoActual)
     return tabla[estadoActual][ESPACIO];
 
   else
-    return tabla[estadoActual][3];
-}
-
-// ------------------------------------------------------------------------------------------
-bool frenar(int e)
-{
-	return estado[e];
+    return tabla[estadoActual][OTRO];
 }
 // -----------------------------------------------------------------------------------------
 int aceptarToken(char caracter, int estadoActual)
 {
-    switch(estadoActual)
+  switch(estadoActual)
 	{
     case 4:
-		ungetc(caracter,stdin);
-		return NUMERAL;
+        ungetc(caracter,stdin);
+		    return NUMERAL;
+    
+    case 5:
+        return FDT;
+
     case 6:
-    ungetc(caracter,stdin);
-		return ENTERO;
+        ungetc(caracter,stdin);
+		    return CONSTANTE_ENTERA;
+
 		case 7:
-    ungetc(caracter,stdin);
-		return IDENTIFICADOR;
+        ungetc(caracter,stdin);
+		    return IDENTIFICADOR;
+
 		case 8:
         ungetc(caracter,stdin);
-		return ERROR_LEXICO;
+		    return ERROR;
 	}
-	return FDT;
 }
 // -----------------------------------------------------------------------------------------
-TOKEN scanner()
+int scanner()
 {
   int token;
   int estadoActual;
@@ -79,3 +75,7 @@ TOKEN scanner()
   estadoActual = 0;
 	return token;
 }
+
+/*
+En el código está emparchado porque hacen ungetc cuando es numeral, pero resulta que numeral no lleva centinela por lo tanto no debe tener ungetc
+*/

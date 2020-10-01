@@ -1,19 +1,12 @@
+//////////////////////////////////////////////////////////////////////////////////////
 /*
-TRABAJO PRACTICO N1 2020
-"Un escaner elemental"
+      TP1 - 2020
+      "Un escaner elemental"
 
-INTEGRANTES: 
-Alejandro Buergo / 168.569-7
-Ignacio Ferrante / 171.524-0
-Patricio Galli   / 172.467-8
-*/
+                                                                                    */
+//////////////////////////////////////////////////////////////////////////////////////
 
 #include "scanner.h"
-int cantidadIdentificadores = 0;
-int cantidadConstantesEnt = 0;
-int cantidadNumerales = 0;
-int cantidadErrores = 0;
-TOKEN c;
 
 int main()
 {
@@ -24,14 +17,12 @@ int main()
 
   int token;
 
-  //TOKEN c;
-
   printf("Los resultados del datosPrueba.txt son: \n\n");
   do
   {
     token = scanner();
-    //c = scanner();
-    switch(token){    //switch(c)
+
+    switch(token){
 
       case CONSTANTE_ENTERA:
         printf("Constante entera\n");
@@ -53,7 +44,7 @@ int main()
         cantErrores++;
         break;
         
-      case FDT: //while(c!=FDT);
+      case FDT:
         break;
     }
     
