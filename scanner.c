@@ -1,8 +1,5 @@
 #include "scanner.h"
 
-char caracter;
-int estadoActual;
-
 static int tabla[8][6] = {
     { 1 , 2 , 3 , 4 , 5 , 0},
     { 1 , 6 , 6 , 6 , 6 , 6},
@@ -15,7 +12,7 @@ static int tabla[8][6] = {
     };
 
 // ------------------------------------------------------------------------------------------
-int cambiarEstado(char c)
+int cambiarEstado(char c, int estadoActual)
 {
   if(isdigit(c))
     return tabla[estadoActual][DIGITO];
@@ -23,8 +20,8 @@ int cambiarEstado(char c)
   else if(isalpha(c))
     return tabla[estadoActual][LETRA];
 
- //else if(isNumeral(c))
- //   return tabla[estadoActual][UN_NUMERAL];
+ else if(c == 35)
+    return tabla[estadoActual][UN_NUMERAL];
 
   else if (c == EOF )
     return tabla[estadoActual][FNC];
@@ -36,11 +33,9 @@ int cambiarEstado(char c)
     return tabla[estadoActual][OTRO];
 }
 // -----------------------------------------------------------------------------------------
-int aceptarToken()
+int aceptarToken(char caracter, int estadoActual)
 {
-  estadoActual = 0;
-
-  switch(estadoActual)
+    switch(estadoActual)
 	{
     case 4:
         ungetc(caracter,stdin);
@@ -66,12 +61,18 @@ int aceptarToken()
 // -----------------------------------------------------------------------------------------
 int scanner()
 {
+  int token;
+  int estadoActual;
+  char caracter;
+
 	do
 	{
     caracter  = getchar();
-    estadoActual = cambiarEstado(caracter);
+    estadoActual = cambiarEstado(caracter, estadoActual);
     
 	}while(estadoActual < 4);
 
-	return aceptarToken();
+  token = aceptarToken(caracter, estadoActual);
+  estadoActual = 0;
+	return token;
 }

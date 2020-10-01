@@ -17,11 +17,14 @@ int main()
 
   int token;
 
+  //TOKEN c;
+
   printf("Los resultados del datosPrueba.txt son: \n\n");
   do
   {
     token = scanner();
-    switch(token){
+    //c = scanner();
+    switch(token){    //switch(c)
 
       case CONSTANTE_ENTERA:
         printf("Constante entera\n");
@@ -43,7 +46,7 @@ int main()
         cantErrores++;
         break;
         
-      case FDT:
+      case FDT: //while(c!=FDT);
         break;
     }
     
